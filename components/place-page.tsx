@@ -52,7 +52,7 @@ export function PlacePage({ place }: PlacePageProps) {
           <p className="mt-7">
             <Link
               href={place.hero.ctaHref}
-              className="inline-flex min-h-11 items-center gap-7 bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
+              className="inline-flex min-h-11 items-center gap-7 rounded-lg bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
             >
               {place.hero.cta}
               <span aria-hidden="true">↗</span>

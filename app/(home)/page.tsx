@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { SceneImage } from "@/components/scene-image";
 import { getFeaturedFieldNoteForHome, fieldNoteRoute } from "@/lib/field-notes";
 import { forestImage, heroImage, homeHabitats } from "@/lib/home";
 import { routes } from "@/lib/site";
@@ -16,13 +16,10 @@ export default function HomePage() {
   return (
     <>
       <section aria-labelledby="home-title" className="on-hero relative isolate min-h-[640px] text-cream md:min-h-[620px]">
-        <div className="absolute inset-0">
-          <SceneImage
+        <div className="absolute inset-0 -z-10">
+          <Image
             src={heroImage.src}
             alt={heroImage.alt}
-            presentation="hero"
-            unavailableHref={routes.journey}
-            unavailableLabel="Begin the journey"
             fill
             priority
             loading="eager"
@@ -31,7 +28,7 @@ export default function HomePage() {
           />
           <div className="hero-shade absolute inset-0" />
         </div>
-        <div className="relative z-10 px-[6%] pt-56 pb-28 md:pt-44 md:pb-24">
+        <div className="relative px-[6%] pt-56 pb-28 md:pt-44 md:pb-24">
           <p className="kicker">Less noise. More wonder.</p>
           <h1 id="home-title" className="display-title mt-4 max-w-3xl text-cream">
             Somewhere beyond
@@ -46,7 +43,7 @@ export default function HomePage() {
           <div className="mt-8 flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-7">
             <Link
               href={routes.journey}
-              className="inline-flex min-h-11 items-center gap-7 bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
+              className="inline-flex min-h-11 items-center gap-7 rounded-lg bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
             >
               Begin the journey
               <span aria-hidden="true">↗</span>
@@ -60,7 +57,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <p className="pointer-events-none absolute inset-x-[6%] bottom-6 z-10 flex items-end justify-between gap-5 text-[0.6875rem] tracking-[0.14em] uppercase">
+        <p className="pointer-events-none absolute inset-x-[6%] bottom-6 flex items-end justify-between gap-5 text-[0.6875rem] tracking-[0.14em] uppercase">
           <span>01 / Stillwater Mere</span>
           <span className="max-w-[9rem] text-right md:max-w-none">
             A world made for wandering <span aria-hidden="true">↓</span>
@@ -92,10 +89,9 @@ export default function HomePage() {
                 className="group relative block min-h-[290px] text-cream md:min-h-[325px]"
               >
                 <span className="absolute inset-0 overflow-hidden">
-                  <SceneImage
+                  <Image
                     src={habitat.image}
                     alt=""
-                    presentation="card"
                     fill
                     sizes="(min-width: 768px) 30vw, 88vw"
                     className="object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.04]"
@@ -123,12 +119,9 @@ export default function HomePage() {
 
       <section aria-labelledby="journey-title" className="grid bg-pine text-paper md:grid-cols-[1.1fr_1fr]">
         <div className="relative min-h-[310px] md:min-h-[470px]">
-          <SceneImage
+          <Image
             src={forestImage.src}
             alt={forestImage.alt}
-            presentation="quiet"
-            unavailableHref={routes.journey}
-            unavailableLabel="Step inside the story"
             fill
             sizes="(min-width: 768px) 55vw, 100vw"
             className="object-cover"
@@ -198,14 +191,9 @@ export default function HomePage() {
           </p>
         </div>
         <div className="relative h-[300px] overflow-hidden md:h-[370px]">
-          <SceneImage
+          <Image
             src={forestImage.src}
             alt={forestImage.cropAlt}
-            presentation="quiet"
-            unavailableHref={
-              featuredFieldNote ? fieldNoteRoute(featuredFieldNote.slug) : routes.mossveilForest
-            }
-            unavailableLabel={featuredFieldNote ? "Read the field note" : "Discover Mossveil Forest"}
             fill
             sizes="(min-width: 768px) 42vw, 88vw"
             className="origin-[10%_92%] scale-[2.1] object-cover object-[10%_92%]"

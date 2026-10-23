@@ -15,14 +15,14 @@ export const caseStudyContent = {
     {
       step: "02",
       title: "Choose a landscape",
-      text: "Explore lists the three published places and can filter them by forest, water, or mountain. The same places appear as markers on an illustrated map. The map is a drawing with designed positions, not a geographic map.",
+      text: "Explore lists six published places and can filter them by forest, water, or mountain. The same places appear as markers on an illustrated map. The map is a drawing with designed positions, not a geographic map.",
       href: routes.explore,
       label: "Open Explore",
     },
     {
       step: "03",
       title: "Read a place",
-      text: "Mossveil Forest, Stillwater Mere, and Cloudrest Ridge each have a story, a habitat, a chapter, a wide view, and a labeled detail crop of the same generated scene. Each page continues into Into the Quiet.",
+      text: "Six places each have a story, a habitat, a wide view, and a labeled detail crop of their own generated scene. Mossveil Forest, Stillwater Mere, and Cloudrest Ridge are also the three chapters of Into the Quiet. Fern Hollow, Silverthread Falls, and Emberstone Summit continue into the related chapter and into a neighboring place.",
       href: routes.mossveilForest,
       label: "Read Mossveil Forest",
     },
@@ -43,7 +43,7 @@ export const caseStudyContent = {
   ],
   present: [
     "Shared header and footer, with the fiction disclosure and image provenance on every page.",
-    "Home, three habitat introductions, three destination pages, Explore with list and illustrated map, one field note, and Into the Quiet.",
+    "Home, three habitat introductions, six destination pages, Explore with list and illustrated map, one field note, and Into the Quiet.",
     "About and Credits, linked from the footer. Credits describe generated scenes, not documentary photographs.",
     "Quiet states for an empty or unknown habitat filter, a map that does not load, a scene image that fails, and a path that is not published.",
     "Keyboard access to the same destinations, visible focus, and a reduced-motion journey that still reaches every chapter.",
@@ -94,7 +94,7 @@ export const caseStudyLab = {
     "The timings below are one warm load of the local development server after the route had already compiled. They are not a production Lighthouse run and do not represent a visitor network.",
     "Scripted focus in this embedded browser does not paint the focus ring, because the page is not the operating-system focus. The focus style is in the stylesheet. Skip link, header, primary actions, and footer links are real links in the page.",
     "The illustrated map is loaded in the browser after the page, not in the first HTML. Its failure state appears once that script runs.",
-    "Only one field note and three destination pages are published.",
+    "Only one field note is published. The journey still has three chapters; the other three places join that passage from their own pages.",
   ],
   measurements: [
     "On that Home load: first byte about 177 ms, first contentful paint about 292 ms, DOMContentLoaded about 259 ms, and the load event about 434 ms.",

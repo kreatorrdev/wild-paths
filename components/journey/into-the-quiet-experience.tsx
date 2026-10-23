@@ -377,7 +377,7 @@ export function IntoTheQuietExperience() {
           <div className="mb-5 flex flex-wrap items-center gap-x-6 gap-y-3 md:gap-x-7">
             <button
               type="button"
-              className="inline-flex min-h-11 items-center gap-7 bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
+              className="inline-flex min-h-11 items-center gap-7 rounded-lg bg-paper px-5 py-3.5 text-xs tracking-[0.02em] text-pine hover:bg-cream"
               onClick={handlePlay}
             >
               {playLabel}

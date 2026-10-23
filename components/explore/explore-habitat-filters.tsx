@@ -32,8 +32,8 @@ export function ExploreHabitatFilters({
                 aria-current={isActive ? "true" : undefined}
                 className={
                   isActive
-                    ? "inline-flex min-h-11 items-center bg-pine px-4 py-2 text-xs tracking-[0.02em] text-paper"
-                    : "inline-flex min-h-11 items-center border border-line bg-paper px-4 py-2 text-xs tracking-[0.02em] text-ink hover:border-pine/40"
+                    ? "inline-flex min-h-11 items-center rounded-lg bg-pine px-4 py-2 text-xs tracking-[0.02em] text-paper"
+                    : "inline-flex min-h-11 items-center rounded-lg border border-line bg-paper px-4 py-2 text-xs tracking-[0.02em] text-ink hover:border-pine/40"
                 }
               >
                 {option.label}

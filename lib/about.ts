@@ -9,7 +9,7 @@ export const aboutContent = {
     {
       heading: "Why the places are imagined",
       paragraphs: [
-        "Mossveil Forest, Stillwater Mere, Cloudrest Ridge, and the paths between them do not exist on any map you could hike. Names, habitats, and story chapters are invented so the experience can focus on art direction, responsive layout, and quiet navigation rather than real-world trail data.",
+        "Mossveil Forest, Fern Hollow, Stillwater Mere, Silverthread Falls, Cloudrest Ridge, Emberstone Summit, and the paths between them do not exist on any map you could hike. Names, habitats, and story chapters are invented so the experience can focus on art direction, responsive layout, and quiet navigation rather than real-world trail data.",
         "That fiction is stated on every page footer and on destination and editorial content. A direct link to a place still opens with the same disclosure — the world is a design concept, not a travel guide.",
       ],
     },

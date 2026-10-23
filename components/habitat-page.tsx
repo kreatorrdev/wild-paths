@@ -128,11 +128,11 @@ export function HabitatPage({ habitat, places }: HabitatPageProps) {
           ))}
         </ul>
         <p className="mt-10 text-sm leading-[1.9] text-muted">
-          More {habitat.name.toLowerCase()} destinations will appear here once their pages are complete.{" "}
+          These are the published {habitat.name.toLowerCase()} places.{" "}
           <Link href={routes.journey} className="text-ink underline-offset-4 hover:underline">
             Walk Into the Quiet
           </Link>{" "}
-          to move through the flagship journey now.
+          to move through the flagship journey.
         </p>
       </section>
     </article>

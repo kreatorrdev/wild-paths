@@ -53,6 +53,47 @@ export const publishedAssets: PublishedAssetRecord[] = [
     ],
   },
   {
+    id: "fern-hollow",
+    title: "Fern Hollow",
+    fictionalSubject: "Sheltered fern clearing with mossy banks and filtered light (imagined forest habitat)",
+    originalFile: "design/assets/fern-hollow.png",
+    webpFile: "design/assets/fern-hollow.webp",
+    generationMethod: "Built-in image generation tool for this portfolio demo",
+    accessibilityIntent:
+      "Keep the fern-filled hollow and softly lit opening visible; the place page labels its closer view as a detail crop",
+    publishedOn: ["Fern Hollow place page (wide and detail crop)", "Forests habitat", "Explore list and map"],
+  },
+  {
+    id: "silverthread-falls",
+    title: "Silverthread Falls",
+    fictionalSubject: "Narrow waterfall over dark mossy rock into a forest pool (imagined water habitat)",
+    originalFile: "design/assets/silverthread-falls.png",
+    webpFile: "design/assets/silverthread-falls.webp",
+    generationMethod: "Built-in image generation tool for this portfolio demo",
+    accessibilityIntent:
+      "Keep the fall and pool visible, with the portrait focal point around 65 percent horizontally; the closer view is labeled as a detail crop",
+    publishedOn: [
+      "Silverthread Falls place page (wide and detail crop)",
+      "Waters habitat",
+      "Explore list and map",
+    ],
+  },
+  {
+    id: "emberstone-summit",
+    title: "Emberstone Summit",
+    fictionalSubject: "Weathered summit rock in evening light above hazy ridges (imagined mountain habitat)",
+    originalFile: "design/assets/emberstone-summit.png",
+    webpFile: "design/assets/emberstone-summit.webp",
+    generationMethod: "Built-in image generation tool for this portfolio demo",
+    accessibilityIntent:
+      "Preserve the warm crest and distant mountain layers, with the portrait focal point around 65 percent horizontally; the closer view is labeled as a detail crop",
+    publishedOn: [
+      "Emberstone Summit place page (wide and detail crop)",
+      "Mountains habitat",
+      "Explore list and map",
+    ],
+  },
+  {
     id: "forest-foreground",
     title: "Forest foreground",
     fictionalSubject: "Decorative near layer for the forest journey scene (imagined, non-documentary)",

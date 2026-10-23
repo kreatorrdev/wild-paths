@@ -1,12 +1,18 @@
 import { cloudrestRidgePlace } from "@/lib/places/cloudrest-ridge";
+import { emberstoneSummitPlace } from "@/lib/places/emberstone-summit";
+import { fernHollowPlace } from "@/lib/places/fern-hollow";
 import { mossveilForestPlace } from "@/lib/places/mossveil-forest";
+import { silverthreadFallsPlace } from "@/lib/places/silverthread-falls";
 import { stillwaterMerePlace } from "@/lib/places/stillwater-mere";
 import type { HabitatSlug, PlaceContent } from "@/lib/places/types";
 
 export const publishedPlaces: PlaceContent[] = [
   mossveilForestPlace,
+  fernHollowPlace,
   stillwaterMerePlace,
+  silverthreadFallsPlace,
   cloudrestRidgePlace,
+  emberstoneSummitPlace,
 ];
 
 export const publishedPlaceSlugs = publishedPlaces.map((place) => place.slug);
