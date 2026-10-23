@@ -19,6 +19,7 @@ export const routes = {
   cloudrestRidge: "/places/cloudrest-ridge",
   journey: "/journeys/into-the-quiet",
   about: "/about",
+  caseStudy: "/case-study",
   credits: "/credits",
   beneathTheCanopy: "/journeys/into-the-quiet#beneath-the-canopy",
   stillwaterMereChapter: "/journeys/into-the-quiet#stillwater-mere",

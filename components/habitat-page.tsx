@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import type { HabitatContent } from "@/lib/habitats";
 import type { PlaceContent } from "@/lib/places/types";
 import { placeRoute } from "@/lib/places";
@@ -21,10 +21,13 @@ export function HabitatPage({ habitat, places }: HabitatPageProps) {
         aria-labelledby={`${habitat.slug}-title`}
         className="on-hero relative isolate min-h-[520px] text-cream md:min-h-[560px]"
       >
-        <div className="absolute inset-0 -z-10">
-          <Image
+        <div className="absolute inset-0">
+          <SceneImage
             src={habitat.heroImage}
             alt={habitat.heroAlt}
+            presentation="hero"
+            unavailableHref={routes.explore}
+            unavailableLabel="Browse destinations"
             fill
             priority
             sizes="100vw"
@@ -32,7 +35,7 @@ export function HabitatPage({ habitat, places }: HabitatPageProps) {
           />
           <div className="hero-shade absolute inset-0" />
         </div>
-        <div className="relative px-[6%] pt-36 pb-24 md:pt-32 md:pb-20">
+        <div className="relative z-10 px-[6%] pt-36 pb-24 md:pt-32 md:pb-20">
           <p>
             <Link
               href={routes.home}
@@ -79,9 +82,10 @@ export function HabitatPage({ habitat, places }: HabitatPageProps) {
                   href={placeRoute(place.slug)}
                   className="group relative block min-h-[220px] md:min-h-full"
                 >
-                  <Image
+                  <SceneImage
                     src={place.hero.image}
                     alt=""
+                    presentation="card"
                     fill
                     sizes="(min-width: 768px) 28vw, 88vw"
                     className={`object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03] ${place.hero.imageClassName ?? "object-[57%_center]"}`}

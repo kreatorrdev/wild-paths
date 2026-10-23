@@ -53,6 +53,7 @@ export function IntoTheQuietExperience() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [chapterIndex, setChapterIndex] = useState(0);
+  const [sceneMissing, setSceneMissing] = useState(false);
 
   const motionReduced = systemReducedMotion || reduceMotion;
   const chapter = intoTheQuietChapters[chapterIndex];
@@ -157,6 +158,31 @@ export function IntoTheQuietExperience() {
     document.addEventListener("visibilitychange", onVisibility);
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, [stopPlayback]);
+
+  useEffect(() => {
+    const scene = intoTheQuietScenes[chapterIndex];
+    if (!scene) {
+      return;
+    }
+
+    let cancelled = false;
+    const probe = new window.Image();
+    probe.onload = () => {
+      if (!cancelled) {
+        setSceneMissing(false);
+      }
+    };
+    probe.onerror = () => {
+      if (!cancelled) {
+        setSceneMissing(true);
+      }
+    };
+    probe.src = scene.image.src;
+
+    return () => {
+      cancelled = true;
+    };
+  }, [chapterIndex]);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -272,6 +298,7 @@ export function IntoTheQuietExperience() {
                 key={scene.alt}
                 role="img"
                 aria-label={scene.alt}
+                aria-hidden={sceneMissing ? true : undefined}
                 className="absolute inset-0 bg-cover bg-center will-change-[transform,opacity] backface-hidden"
                 style={sceneStyles[index]}
               />
@@ -313,7 +340,28 @@ export function IntoTheQuietExperience() {
           <p className="sr-only" aria-live="polite">
             Chapter {chapter.number}, {chapter.place}. {chapter.description}
           </p>
-          <div className="absolute inset-x-[6%] top-6 flex justify-end pt-14 md:top-7 md:pt-16">
+          {sceneMissing ? (
+            <div className="absolute inset-0 z-10 flex flex-col justify-end bg-pine px-[6%] pb-10" role="alert">
+              <p className="kicker">Image unavailable</p>
+              <p className="mt-3 max-w-md font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.12] tracking-[-0.04em]">
+                This landscape did not <em>load.</em>
+              </p>
+              <p className="mt-4 max-w-md text-sm leading-[1.9] text-cream/85">
+                The chapter controls below still work. You can also leave the scene and read the forest story.
+              </p>
+              <p className="mt-6">
+                <Link
+                  href={routes.mossveilForest}
+                  className="inline-flex min-h-11 items-center gap-3.5 border-b border-white/40 py-2 text-xs text-cream"
+                  onClick={stopPlayback}
+                >
+                  Read the Mossveil story
+                  <span aria-hidden="true"> →</span>
+                </Link>
+              </p>
+            </div>
+          ) : null}
+          <div className="absolute inset-x-[6%] top-6 z-20 flex justify-end pt-14 md:top-7 md:pt-16">
             <Link
               href={routes.home}
               className="inline-flex min-h-11 items-center py-2 text-xs text-cream"

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import { getHabitatBySlug, habitatRoute } from "@/lib/habitats";
 import type { PlaceContent } from "@/lib/places/types";
 
@@ -18,10 +18,13 @@ export function PlacePage({ place }: PlacePageProps) {
         aria-labelledby={`${place.slug}-title`}
         className="on-hero relative isolate min-h-[630px] text-cream md:min-h-[650px]"
       >
-        <div className="absolute inset-0 -z-10">
-          <Image
+        <div className="absolute inset-0">
+          <SceneImage
             src={place.hero.image}
             alt={place.hero.alt}
+            presentation="hero"
+            unavailableHref={place.hero.ctaHref}
+            unavailableLabel={place.hero.cta}
             fill
             priority
             sizes="100vw"
@@ -29,7 +32,7 @@ export function PlacePage({ place }: PlacePageProps) {
           />
           <div className="hero-shade absolute inset-0" />
         </div>
-        <div className="relative px-[6%] pt-36 pb-28 md:pt-32 md:pb-24">
+        <div className="relative z-10 px-[6%] pt-36 pb-28 md:pt-32 md:pb-24">
           <p>
             <Link
               href={habitatRoute(place.habitatSlug)}
@@ -56,7 +59,7 @@ export function PlacePage({ place }: PlacePageProps) {
             </Link>
           </p>
         </div>
-        <p className="pointer-events-none absolute inset-x-[6%] bottom-6 flex items-end justify-between gap-5 text-[0.5rem] tracking-[0.15em] uppercase md:text-[0.5rem]">
+        <p className="pointer-events-none absolute inset-x-[6%] bottom-6 z-10 flex items-end justify-between gap-5 text-[0.5rem] tracking-[0.15em] uppercase md:text-[0.5rem]">
           <span>{place.hero.tags[0]}</span>
           <span className="max-w-[7rem] text-right md:max-w-none">{place.hero.tags[1]}</span>
         </p>
@@ -97,9 +100,12 @@ export function PlacePage({ place }: PlacePageProps) {
       <section aria-label="Place imagery" className="grid gap-7 px-[6%] pb-10 md:grid-cols-[1.4fr_1fr] md:gap-6 md:pb-16">
         <figure>
           <div className="relative h-[290px] overflow-hidden md:h-[340px]">
-            <Image
+            <SceneImage
               src={place.hero.image}
               alt={place.gallery.wide.alt}
+              presentation="quiet"
+              unavailableHref={place.next.href}
+              unavailableLabel={place.next.cta}
               fill
               sizes="(min-width: 768px) 58vw, 88vw"
               className={wideImageClassName}
@@ -109,9 +115,12 @@ export function PlacePage({ place }: PlacePageProps) {
         </figure>
         <figure>
           <div className="relative h-[290px] overflow-hidden md:h-[340px]">
-            <Image
+            <SceneImage
               src={place.hero.image}
               alt={place.gallery.crop.alt}
+              presentation="quiet"
+              unavailableHref={place.next.href}
+              unavailableLabel={place.next.cta}
               fill
               sizes="(min-width: 768px) 32vw, 88vw"
               className={place.gallery.crop.imageClassName}
@@ -137,9 +146,12 @@ export function PlacePage({ place }: PlacePageProps) {
         className="grid items-center gap-8 px-[6%] py-11 md:grid-cols-2 md:gap-[7%] md:py-[4.75rem]"
       >
         <div className="relative h-[260px] overflow-hidden md:h-[310px]">
-          <Image
+          <SceneImage
             src={place.next.image}
             alt={place.next.imageAlt}
+            presentation="quiet"
+            unavailableHref={place.next.href}
+            unavailableLabel={place.next.cta}
             fill
             sizes="(min-width: 768px) 42vw, 88vw"
             className="object-cover object-center"

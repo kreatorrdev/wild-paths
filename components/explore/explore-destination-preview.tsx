@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import type { ExploreDestinationRecord } from "@/lib/explore";
 
 type ExploreDestinationPreviewProps = {
@@ -10,9 +10,12 @@ export function ExploreDestinationPreview({ destination }: ExploreDestinationPre
   return (
     <article className="border border-line bg-paper">
       <div className="relative h-40 w-full overflow-hidden md:h-44">
-        <Image
+        <SceneImage
           src={destination.imageSrc}
           alt=""
+          presentation="quiet"
+          unavailableHref={destination.href}
+          unavailableLabel="Open destination page"
           fill
           sizes="(min-width: 768px) 40vw, 88vw"
           className="object-cover object-center"

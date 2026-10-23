@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import type { FieldNoteContent } from "@/lib/field-notes/types";
 import { publishedFieldNotes } from "@/lib/field-notes";
 import { routes } from "@/lib/site";
@@ -35,9 +35,12 @@ export function FieldNotePage({ note }: FieldNotePageProps) {
 
       <figure className="px-[6%]">
         <div className="relative h-[300px] overflow-hidden md:h-[420px]">
-          <Image
+          <SceneImage
             src={note.article.leadFigure.image}
             alt={note.article.leadFigure.alt}
+            presentation="quiet"
+            unavailableHref={note.relatedPlace.href}
+            unavailableLabel={note.relatedPlace.cta}
             fill
             priority
             sizes="(min-width: 768px) 88vw, 100vw"
@@ -62,9 +65,12 @@ export function FieldNotePage({ note }: FieldNotePageProps) {
           {note.article.figures.map((figure) => (
             <figure key={figure.caption}>
               <div className="relative h-[260px] overflow-hidden md:h-[340px]">
-                <Image
+                <SceneImage
                   src={figure.image}
                   alt={figure.alt}
+                  presentation="quiet"
+                  unavailableHref={note.relatedPlace.href}
+                  unavailableLabel={note.relatedPlace.cta}
                   fill
                   sizes="(min-width: 768px) 88vw, 100vw"
                   className={figure.imageClassName}
@@ -81,9 +87,12 @@ export function FieldNotePage({ note }: FieldNotePageProps) {
         className="grid items-center gap-8 border-t border-line px-[6%] py-11 md:grid-cols-2 md:gap-[7%] md:py-[4.75rem]"
       >
         <div className="relative h-[260px] overflow-hidden md:h-[310px]">
-          <Image
+          <SceneImage
             src={note.relatedPlace.image}
             alt={note.relatedPlace.imageAlt}
+            presentation="quiet"
+            unavailableHref={note.relatedPlace.href}
+            unavailableLabel={note.relatedPlace.cta}
             fill
             sizes="(min-width: 768px) 42vw, 88vw"
             className={relatedImageClassName}

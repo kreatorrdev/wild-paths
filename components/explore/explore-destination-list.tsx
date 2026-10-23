@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import type { ExploreDestinationRecord } from "@/lib/explore";
 
 type ExploreDestinationListProps = {
@@ -27,9 +27,10 @@ export function ExploreDestinationList({ places, selectedSlug = null }: ExploreD
                 aria-current={selected ? "true" : undefined}
                 className="group relative block min-h-[220px] md:min-h-full"
               >
-                <Image
+                <SceneImage
                   src={place.imageSrc}
                   alt=""
+                  presentation="card"
                   fill
                   sizes="(min-width: 768px) 28vw, 88vw"
                   className="object-cover object-[57%_center] motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"

@@ -36,6 +36,12 @@ export function SiteFooter({ content }: SiteFooterProps) {
               About
             </Link>
             <Link
+              href={routes.caseStudy}
+              className="inline-flex min-h-11 items-center py-1 text-[0.6875rem] tracking-[0.06em] text-ink underline decoration-line underline-offset-[0.35em] hover:decoration-pine"
+            >
+              Case study
+            </Link>
+            <Link
               href={routes.credits}
               className="inline-flex min-h-11 items-center py-1 text-[0.6875rem] tracking-[0.06em] text-ink underline decoration-line underline-offset-[0.35em] hover:decoration-pine"
             >

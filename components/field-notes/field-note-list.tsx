@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SceneImage } from "@/components/scene-image";
 import { fieldNoteRoute } from "@/lib/field-notes";
 import type { FieldNoteContent } from "@/lib/field-notes/types";
 
@@ -17,9 +17,10 @@ export function FieldNoteList({ notes }: FieldNoteListProps) {
               href={fieldNoteRoute(note.slug)}
               className="group relative block min-h-[220px] md:min-h-[280px]"
             >
-              <Image
+              <SceneImage
                 src={note.index.listImage}
                 alt=""
+                presentation="card"
                 fill
                 sizes="(min-width: 768px) 38vw, 88vw"
                 className={`motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03] ${note.index.listImageClassName}`}
