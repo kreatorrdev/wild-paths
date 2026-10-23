@@ -1,0 +1,85 @@
+const { chromium } = require('playwright');
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+(async () => {
+  const browser = await chromium.launch({ headless: true, channel: 'msedge' });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1050 }, deviceScaleFactor: 1 });
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const out = path.join(__dirname, 'screenshots');
+  fs.mkdirSync(out, { recursive: true });
+  await page.goto('file:///' + path.join(__dirname, 'preview.html').replaceAll('\\', '/'));
+  const frame = page.frameLocator('iframe');
+  await frame.locator('#wild-paths-preview').waitFor();
+  async function capture(selector, filename) {
+    const height = await frame.locator('#wild-paths-preview').evaluate(e => Math.ceil(e.scrollHeight) + 40);
+    const previous = page.viewportSize();
+    await page.setViewportSize({ width: previous.width, height: height + 100 });
+    await page.locator('iframe').evaluate((e, h) => { e.style.height = h + 'px'; e.style.maxHeight = 'none'; }, height);
+    await frame.locator(selector).screenshot({ path: path.join(out, filename) });
+    await page.setViewportSize(previous);
+  }
+  await frame.locator('.wp-home-hero').screenshot({ path: path.join(out, 'home-desktop.png') });
+  const results = [];
+  for (const width of [1440, 768, 390, 320]) {
+    await page.setViewportSize({ width, height: 1050 });
+    for (const screen of ['home', 'place', 'journey', 'art']) {
+      await frame.locator(`[data-screen="${screen}"]`).click();
+      const data = await frame.locator('.wp-product').evaluate(element => ({ width: element.clientWidth, scroll: element.scrollWidth, section: element.querySelector('[data-page]:not([hidden])').dataset.page }));
+      assert.equal(data.section, screen);
+      assert(data.scroll <= data.width + 1, `Overflow at ${screen}/${width}: ${JSON.stringify(data)}`);
+      const buttons = await frame.locator(`[data-page="${screen}"] button`).evaluateAll(elements => elements.filter(e => e.getClientRects().length).map(e => ({ label: e.textContent.trim(), w: e.getBoundingClientRect().width })));
+      assert(buttons.every(b => b.w > 0), 'Zero-width visible button');
+      results.push({ viewport: width, screen, productWidth: data.width, overflow: false });
+    }
+  }
+  await page.setViewportSize({ width: 1440, height: 1050 });
+  await frame.locator('[data-screen="place"]').click();
+  await capture('.wp-product', 'mossveil-desktop.png');
+  await frame.locator('[data-width="mobile"]').click();
+  await capture('.wp-product', 'mossveil-mobile.png');
+  await frame.locator('[data-screen="home"]').click();
+  await capture('.wp-product', 'home-mobile.png');
+  await frame.locator('[data-width="desktop"]').click();
+  await frame.locator('[data-screen="journey"]').click();
+  await frame.locator('.wp-depth-stage').scrollIntoViewIfNeeded();
+  await frame.locator('#wp-play').click();
+  await page.waitForTimeout(1100);
+  const progressed = await frame.locator('#wp-travel').inputValue();
+  assert(Number(progressed) > 0, 'Playback did not advance');
+  await frame.locator('#wp-play').click();
+  const paused = await frame.locator('#wp-travel').inputValue();
+  await page.waitForTimeout(250);
+  assert.equal(await frame.locator('#wp-travel').inputValue(), paused, 'Pause did not stop playback');
+  await frame.locator('#wp-travel').fill('50');
+  await frame.locator('#wp-travel').dispatchEvent('input');
+  assert.match(await frame.locator('#wp-chapter-title').innerText(), /still water/);
+  await frame.locator('#wp-travel').fill('100');
+  await frame.locator('#wp-travel').dispatchEvent('input');
+  assert.match(await frame.locator('#wp-chapter-title').innerText(), /clouds/);
+  await frame.locator('[data-jump="0"]').click();
+  await capture('.wp-journey', 'journey-desktop.png');
+  const scene = frame.locator('.wp-depth-stage');
+  await scene.dispatchEvent('pointermove', { clientX: 900, clientY: 350 });
+  const moving = await frame.locator('.wp-camera').evaluate(e => e.style.transform);
+  assert.notEqual(moving, 'rotateX(0deg) rotateY(0deg)');
+  await frame.locator('#wp-reduce').check();
+  const still = await frame.locator('.wp-camera').evaluate(e => e.style.transform);
+  await scene.dispatchEvent('pointermove', { clientX: 500, clientY: 250 });
+  assert.equal(await frame.locator('.wp-camera').evaluate(e => e.style.transform), still);
+  await frame.locator('#wp-play').click();
+  assert.equal(await frame.locator('#wp-travel').inputValue(), '50');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  assert(await frame.locator('#wp-reduce').isChecked());
+  await frame.locator('[data-width="mobile"]').click();
+  await capture('.wp-journey', 'journey-mobile.png');
+  await frame.locator('[data-screen="art"]').click();
+  await frame.locator('[data-width="desktop"]').click();
+  await capture('.wp-product', 'art-direction.png');
+  assert.deepEqual(errors, [], 'Browser runtime errors');
+  const report = { layouts: results, playback: 'passed', pause: 'passed', chapterSelection: 'passed', pointerDepth: 'passed', reducedMotion: 'passed', browserErrors: errors };
+  fs.writeFileSync(path.join(__dirname, 'verification.json'), JSON.stringify(report, null, 2));
+  console.log(JSON.stringify(report, null, 2));
+  await browser.close();
+})().catch(error => { console.error(error); process.exitCode = 1; });

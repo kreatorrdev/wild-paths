@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pine: #142b24;
+  --color-paper: #f3efe5;
+  --color-moss: #68745a;
+  --color-amber: #be723d;
+  --color-mist: #e2e9e6;
+  --color-ink: #263c31;
+  --color-muted: #546258;
+  --color-line: #cdd2c5;
+  --color-cream: #fffaf0;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background: var(--color-paper);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus-color, var(--color-pine));
+    outline-offset: 3px;
+  }
+
+  .on-hero {
+    --focus-color: var(--color-cream);
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(90deg, rgb(9 24 20 / 64%), rgb(9 24 20 / 6%)),
+      linear-gradient(180deg, rgb(9 24 20 / 25%), transparent 40%, rgb(9 24 20 / 32%));
+  }
+
+  .habitat-shade {
+    background: linear-gradient(180deg, #10241f44, transparent 30%, #10241fbb);
+  }
+
+  h1 em,
+  h2 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--color-mist);
+    color: var(--color-pine);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility kicker {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+@utility primary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  min-height: 2.75rem;
+  background-color: var(--color-pine);
+  color: var(--color-paper);
+  padding: 0.875rem 1.2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--color-pine) 86%, white);
+  }
+}
+
+@utility text-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  border-bottom: 1px solid var(--color-line);
+  padding-block: 0.4rem;
+  font-size: 0.75rem;
+}
+
+@utility display-title {
+  max-width: 48rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 7vw, 5.375rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+@utility section-title {
+  max-width: 36rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.125rem, 4vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  text-wrap: balance;
+}

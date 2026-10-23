@@ -1,0 +1,106 @@
+{
+  "layouts": [
+    {
+      "viewport": 1440,
+      "screen": "home",
+      "productWidth": 1408,
+      "overflow": false
+    },
+    {
+      "viewport": 1440,
+      "screen": "place",
+      "productWidth": 1408,
+      "overflow": false
+    },
+    {
+      "viewport": 1440,
+      "screen": "journey",
+      "productWidth": 1408,
+      "overflow": false
+    },
+    {
+      "viewport": 1440,
+      "screen": "art",
+      "productWidth": 1408,
+      "overflow": false
+    },
+    {
+      "viewport": 768,
+      "screen": "home",
+      "productWidth": 736,
+      "overflow": false
+    },
+    {
+      "viewport": 768,
+      "screen": "place",
+      "productWidth": 736,
+      "overflow": false
+    },
+    {
+      "viewport": 768,
+      "screen": "journey",
+      "productWidth": 736,
+      "overflow": false
+    },
+    {
+      "viewport": 768,
+      "screen": "art",
+      "productWidth": 736,
+      "overflow": false
+    },
+    {
+      "viewport": 390,
+      "screen": "home",
+      "productWidth": 358,
+      "overflow": false
+    },
+    {
+      "viewport": 390,
+      "screen": "place",
+      "productWidth": 358,
+      "overflow": false
+    },
+    {
+      "viewport": 390,
+      "screen": "journey",
+      "productWidth": 358,
+      "overflow": false
+    },
+    {
+      "viewport": 390,
+      "screen": "art",
+      "productWidth": 358,
+      "overflow": false
+    },
+    {
+      "viewport": 320,
+      "screen": "home",
+      "productWidth": 288,
+      "overflow": false
+    },
+    {
+      "viewport": 320,
+      "screen": "place",
+      "productWidth": 288,
+      "overflow": false
+    },
+    {
+      "viewport": 320,
+      "screen": "journey",
+      "productWidth": 288,
+      "overflow": false
+    },
+    {
+      "viewport": 320,
+      "screen": "art",
+      "productWidth": 288,
+      "overflow": false
+    }
+  ],
+  "playback": "passed",
+  "pause": "passed",
+  "chapterSelection": "passed",
+  "pointerDepth": "passed",
+  "reducedMotion": "passed",
+  "browserErrors": []
+}
